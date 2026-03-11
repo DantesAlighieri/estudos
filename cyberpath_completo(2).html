@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberPath Completo 🇨🇭</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#06080f;--s1:#0d1117;--s2:#111820;--border:#1a2535;--border2:#243044;--cyan:#00e5ff;--green:#39ff14;--red:#ff3860;--yellow:#ffcc00;--purple:#bf5fff;--pink:#ff6eb4;--orange:#ff8c42;--text:#dce8f5;--muted:#4a6080}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(0,229,255,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+  body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);animation:scan 8s linear infinite;pointer-events:none;z-index:999;opacity:.25}
+  @keyframes scan{0%{top:0}100%{top:100vh}}
+  .wrap{max-width:1000px;margin:0 auto;padding:22px 14px;position:relative;z-index:1}
+  .hero{text-align:center;padding:32px 14px 24px}
+  .hero-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;opacity:.7}
+  .hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(1.7rem,5vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:8px}
+  .hero h1 span{color:var(--cyan)}
+  .hero-sub{font-size:.82rem;color:var(--muted);line-height:1.6;max-width:460px;margin:0 auto 14px}
+  .hero-tags{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+  .htag{padding:4px 12px;border-radius:50px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:1px;border:1px solid}
+  .tabs{display:flex;gap:4px;background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:20px;flex-wrap:wrap}
+  .tab{flex:1;min-width:68px;padding:8px 5px;border-radius:9px;border:none;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;white-space:nowrap}
+  .tab.active{background:var(--s2);color:var(--cyan);border:1px solid var(--border2)}
+  .tab:hover:not(.active){color:var(--text)}
+  .panel{display:none}.panel.active{display:block}
+  .sh{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+  .sh-num{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--cyan);opacity:.5;letter-spacing:2px}
+  .sh-title{font-family:'Unbounded',sans-serif;font-size:.83rem;font-weight:700;color:#fff}
+  .sh-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:9px;margin-bottom:18px}
+  .stat{background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:13px;text-align:center}
+  .stat-val{font-family:'JetBrains Mono',monospace;font-size:1.45rem;font-weight:700;line-height:1;margin-bottom:3px}
+  .stat-label{font-size:.64rem;color:var(--muted)}
+  .phase-section{margin-bottom:20px}
+  .phase-label{font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px;padding:4px 10px;border-radius:50px;display:inline-block}
+  .modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:8px}
+  .mod-card{background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+  .mod-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+  .mod-card:hover{transform:translateY(-2px);border-color:var(--border2)}
+  .mod-card.done{opacity:.55}.mod-card.done .mod-title{text-decoration:line-through}
+  .mod-icon{font-size:1.05rem;margin-bottom:5px}
+  .mod-title{font-size:.76rem;font-weight:700;color:var(--text);margin-bottom:5px;line-height:1.3;padding-right:20px}
+  .mod-tag{font-family:'JetBrains Mono',monospace;font-size:.54rem;padding:2px 7px;border-radius:50px}
+  .mod-check{position:absolute;top:9px;right:9px;width:17px;height:17px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.58rem;transition:all .2s}
+  .mod-card.done .mod-check{background:var(--green);border-color:var(--green);color:#000}
+  .p0 .mod-card::before{background:var(--cyan)}.p1 .mod-card::before{background:var(--yellow)}.p2 .mod-card::before{background:var(--pink)}.p3 .mod-card::before{background:var(--purple)}.p4 .mod-card::before{background:var(--orange)}.p5 .mod-card::before{background:var(--red)}
+  .cert-banner{background:linear-gradient(135deg,rgba(255,204,0,.07),rgba(255,204,0,.02));border:1px solid rgba(255,204,0,.2);border-radius:11px;padding:13px 15px;margin-bottom:9px;display:flex;align-items:center;gap:11px}
+  .cert-icon{font-size:1.5rem;flex-shrink:0}
+  .cert-name{font-family:'Unbounded',sans-serif;font-size:.76rem;font-weight:700;color:var(--yellow);margin-bottom:2px}
+  .cert-desc{font-size:.72rem;color:var(--muted);line-height:1.4}
+  .year-block{background:var(--s1);border:1px solid var(--border);border-radius:15px;padding:18px;margin-bottom:13px;position:relative;overflow:hidden}
+  .year-block::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .yb1::before{background:linear-gradient(90deg,var(--cyan),transparent)}.yb2::before{background:linear-gradient(90deg,var(--green),transparent)}.yb3::before{background:linear-gradient(90deg,var(--purple),transparent)}
+  .year-label{font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+  .year-title{font-family:'Unbounded',sans-serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:3px}
+  .year-desc{font-size:.76rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
+  .quarters{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .quarter{background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:12px}
+  .q-label{font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:7px}
+  .q-items{display:flex;flex-direction:column;gap:5px}
+  .q-item{display:flex;align-items:flex-start;gap:6px;font-size:.74rem;line-height:1.4;color:var(--text)}
+  .q-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0}
+  .phase-block{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+  .phase-num{width:30px;height:30px;border-radius:50%;background:var(--s2);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--cyan);flex-shrink:0}
+  .phase-content{flex:1}
+  .phase-title{font-weight:700;font-size:.88rem;margin-bottom:3px}
+  .phase-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+  .phase-time{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--yellow);margin-top:3px}
+  .senai-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .senai-card{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:15px}
+  .senai-subject{font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:700;margin-bottom:7px}
+  .senai-item{font-size:.75rem;color:var(--muted);line-height:1.5;display:flex;gap:6px;margin-bottom:4px}
+  .si-dot{width:5px;height:5px;border-radius:50%;margin-top:6px;flex-shrink:0}
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;margin-bottom:16px}
+  .vocab-card{background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:12px;cursor:pointer;transition:all .2s}
+  .vocab-card:hover{border-color:var(--green)}
+  .vocab-word{font-weight:700;font-size:.92rem;color:var(--green);margin-bottom:3px}
+  .vocab-hint{font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+  .vocab-translation{font-size:.76rem;color:var(--text);display:none;margin-top:3px}
+  .vocab-example{font-size:.68rem;color:var(--muted);font-style:italic;margin-top:2px;display:none}
+  .vocab-card.revealed .vocab-translation,.vocab-card.revealed .vocab-example{display:block}
+  .vocab-card.revealed .vocab-hint{display:none}
+  .notes-cats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}
+  .ncat{padding:5px 12px;border-radius:50px;border:1px solid var(--border);background:var(--s1);color:var(--muted);font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s}
+  .ncat.active{border-color:var(--cyan);color:var(--cyan)}
+  .note-area{display:flex;gap:9px;margin-bottom:13px}
+  .note-input{flex:1;background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.81rem;outline:none;resize:none;min-height:62px;transition:border-color .2s}
+  .note-input:focus{border-color:var(--cyan)}
+  .note-input::placeholder{color:var(--muted)}
+  .btn-save{padding:11px 15px;background:var(--cyan);border:none;border-radius:11px;color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.79rem;cursor:pointer;align-self:flex-start;transition:all .2s;white-space:nowrap}
+  .btn-save:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,229,255,.3)}
+  .note-card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:7px;position:relative;animation:fadeUp .25s ease}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .nc-header{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+  .nc-badge{font-size:.55rem;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:50px}
+  .nc-date{font-size:.58rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:auto}
+  .nc-text{font-size:.79rem;line-height:1.6;white-space:pre-wrap}
+  .nc-del{position:absolute;top:9px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;opacity:0;font-size:.82rem}
+  .note-card:hover .nc-del{opacity:1}
+  .nc-del:hover{color:var(--red)}
+  .timer-box{background:var(--s1);border:1px solid var(--border);border-radius:15px;padding:24px 16px;text-align:center;margin-bottom:13px}
+  .t-mode-row{display:flex;gap:5px;justify-content:center;margin-bottom:11px;flex-wrap:wrap}
+  .t-mode{padding:5px 12px;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.62rem;cursor:pointer;transition:all .2s}
+  .t-mode.active{border-color:var(--cyan);color:var(--cyan)}
+  .t-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:5px}
+  .t-display{font-family:'JetBrains Mono',monospace;font-size:3.6rem;font-weight:700;color:var(--cyan);text-shadow:0 0 28px rgba(0,229,255,.35);letter-spacing:4px;margin-bottom:11px;line-height:1}
+  .t-task-input{background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.76rem;outline:none;width:100%;max-width:320px;margin-bottom:11px;text-align:center;transition:border-color .2s}
+  .t-task-input:focus{border-color:var(--cyan)}
+  .t-task-input::placeholder{color:var(--muted)}
+  .t-btns{display:flex;gap:9px;justify-content:center}
+  .t-btn{padding:9px 20px;border-radius:9px;border:1px solid var(--border);background:var(--s2);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.79rem;cursor:pointer;transition:all .2s}
+  .t-btn.primary{background:var(--cyan);color:#000;border-color:var(--cyan);box-shadow:0 0 14px rgba(0,229,255,.2)}
+  .t-btn:hover{transform:translateY(-1px)}
+  .tip{background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.12);border-radius:10px;padding:11px 13px;font-size:.77rem;line-height:1.6;margin-bottom:9px}
+  .tip strong{color:var(--cyan)}
+  .tip.y{background:rgba(255,204,0,.04);border-color:rgba(255,204,0,.15)}.tip.y strong{color:var(--yellow)}
+  .tip.g{background:rgba(57,255,20,.04);border-color:rgba(57,255,20,.15)}.tip.g strong{color:var(--green)}
+  .tip.p{background:rgba(191,95,255,.04);border-color:rgba(191,95,255,.15)}.tip.p strong{color:var(--purple)}
+  .tdah-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:9px;margin-top:11px}
+  .tdah-card{background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:12px}
+  .tdah-card.y{border-left-color:var(--yellow)}.tdah-card.g{border-left-color:var(--green)}.tdah-card.p{border-left-color:var(--purple)}.tdah-card.r{border-left-color:var(--red)}
+  .tdah-tip-title{font-weight:700;font-size:.8rem;margin-bottom:4px}
+  .tdah-tip-text{font-size:.73rem;color:var(--muted);line-height:1.5}
+  .lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:14px}
+  .lang-card{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:15px}
+  .lang-flag{font-size:1.7rem;margin-bottom:6px}
+  .lang-name{font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:700;margin-bottom:3px}
+  .lang-goal{font-size:.73rem;color:var(--muted);margin-bottom:10px;line-height:1.5}
+  .lang-phase{display:flex;gap:7px;align-items:center;font-size:.72rem;margin-bottom:5px;flex-wrap:wrap}
+  .lp-period{font-family:'JetBrains Mono',monospace;font-size:.57rem;color:var(--muted);min-width:56px}
+  .lp-level{padding:2px 8px;border-radius:50px;font-size:.58rem;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:1px}
+  .final-card{background:linear-gradient(135deg,rgba(0,229,255,.05),rgba(57,255,20,.03));border:1px solid rgba(0,229,255,.18);border-radius:15px;padding:24px;text-align:center;margin-top:22px}
+  .final-card h2{font-family:'Unbounded',sans-serif;font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:7px}
+  .final-card p{font-size:.8rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto}
+  @media(max-width:540px){.quarters,.lang-grid,.senai-grid{grid-template-columns:1fr}.t-display{font-size:2.6rem}.modules-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:360px){.modules-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-label">// senai + solyd + 3 anos → suíça</div>
+    <h1>Cyber<span>Path</span> 🇨🇭</h1>
+    <p class="hero-sub">Tudo em um lugar só. Módulos Solyd, plano 3 anos, Senai, inglês, notas e timer.</p>
+    <div class="hero-tags">
+      <span class="htag" style="border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)">🔐 PENTEST</span>
+      <span class="htag" style="border-color:var(--green);color:var(--green);background:rgba(57,255,20,.06)">🕵️ OSINT</span>
+      <span class="htag" style="border-color:var(--yellow);color:var(--yellow);background:rgba(255,204,0,.06)">🇩🇪 ALEMÃO B2</span>
+      <span class="htag" style="border-color:var(--purple);color:var(--purple);background:rgba(191,95,255,.06)">🇬🇧 INGLÊS C1</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('solyd')">📚 Solyd</button>
+    <button class="tab" onclick="showTab('plano')">🗺️ 3 Anos</button>
+    <button class="tab" onclick="showTab('senai')">🎓 Senai</button>
+    <button class="tab" onclick="showTab('ingles')">🇬🇧 Inglês</button>
+    <button class="tab" onclick="showTab('notas')">📝 Notas</button>
+    <button class="tab" onclick="showTab('codigo')">💾 Código</button>
+    <button class="tab" onclick="showTab('foco')">⏱️ Foco</button>
+    <button class="tab" onclick="showTab('ia')" style="color:var(--cyan);border:1px solid rgba(0,229,255,.25);background:rgba(0,229,255,.05)">🤖 IA Mentor</button>
+    <button class="tab" onclick="showTab('xp')" style="color:var(--yellow);border:1px solid rgba(255,204,0,.25);background:rgba(255,204,0,.05)">⚡ XP</button>
+  </div>
+
+  <!-- SOLYD -->
+  <div class="panel active" id="panel-solyd">
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val" id="statDone" style="color:var(--green)">0</div><div class="stat-label">Concluídos</div></div>
+      <div class="stat"><div class="stat-val" style="color:var(--cyan)">28</div><div class="stat-label">Total módulos</div></div>
+      <div class="stat"><div class="stat-val" id="statPct" style="color:var(--yellow)">0%</div><div class="stat-label">Progresso</div></div>
+      <div class="stat"><div class="stat-val" style="color:var(--purple)">4</div><div class="stat-label">Certs Solyd</div></div>
+    </div>
+    <div class="tip"><strong>💡 Como usar:</strong> Clique no módulo quando terminar para marcar ✓. Siga a ordem — cada fase prepara para a próxima!</div>
+    <div class="phase-section p0"><div class="phase-label" style="background:rgba(0,229,255,.08);color:var(--cyan);border:1px solid rgba(0,229,255,.2)">🔰 FASE 0 — Absoluto Zero · COMEÇA AQUI</div><div class="modules-grid" id="grid-p0"></div></div>
+    <div class="phase-section p1"><div class="phase-label" style="background:rgba(255,204,0,.08);color:var(--yellow);border:1px solid rgba(255,204,0,.2)">⚡ FASE 1 — Fundamentos & Redes</div><div class="modules-grid" id="grid-p1"></div></div>
+    <div class="phase-section p2"><div class="phase-label" style="background:rgba(255,110,180,.08);color:var(--pink);border:1px solid rgba(255,110,180,.2)">🌐 FASE 2 — Web & Wi-Fi</div><div class="modules-grid" id="grid-p2"></div></div>
+    <div class="phase-section p3"><div class="phase-label" style="background:rgba(191,95,255,.08);color:var(--purple);border:1px solid rgba(191,95,255,.2)">🔧 FASE 3 — Hardware, Eletrônica & Engenharia Social</div><div class="modules-grid" id="grid-p3"></div></div>
+    <div class="phase-section p4"><div class="phase-label" style="background:rgba(255,140,66,.08);color:var(--orange);border:1px solid rgba(255,140,66,.2)">📱 FASE 4 — Mobile, Cloud & IA</div><div class="modules-grid" id="grid-p4"></div></div>
+    <div class="phase-section p5"><div class="phase-label" style="background:rgba(255,56,96,.08);color:var(--red);border:1px solid rgba(255,56,96,.2)">💀 FASE 5 — Avançado (Malware, Evasão, Assembly)</div><div class="modules-grid" id="grid-p5"></div></div>
+    <div class="sh" style="margin-top:18px"><span class="sh-num">CERT</span><span class="sh-title">Certificações Solyd</span><div class="sh-line"></div></div>
+    <div class="cert-banner"><div class="cert-icon">🏆</div><div><div class="cert-name">SYWP — Solyd Web Pentester</div><div class="cert-desc">Após módulos de Web. Sua primeira cert prática!</div></div></div>
+    <div class="cert-banner"><div class="cert-icon">🏆</div><div><div class="cert-name">SYH2 — Solyd Hacker</div><div class="cert-desc">Marco intermediário. Prova que você evoluiu.</div></div></div>
+    <div class="cert-banner"><div class="cert-icon">🏆</div><div><div class="cert-name">SYAP — Solyd Advanced Pentester</div><div class="cert-desc">Nível avançado. Abre portas no mercado brasileiro.</div></div></div>
+    <div class="cert-banner"><div class="cert-icon">🏆</div><div><div class="cert-name">SYCP / SYES — Professional & Elite</div><div class="cert-desc">Topo da Solyd. Junto com OSCP = perfil de elite internacional.</div></div></div>
+  </div>
+
+  <!-- PLANO 3 ANOS -->
+  <div class="panel" id="panel-plano">
+    <div class="sh"><span class="sh-num">VISÃO GERAL</span><span class="sh-title">Do Senai à Suíça</span><div class="sh-line"></div></div>
+    <div style="margin-bottom:18px">
+      <div class="phase-block"><div class="phase-num">1</div><div class="phase-content"><div class="phase-title">🔰 Base em Cyber + Linux</div><div class="phase-desc">Curso Solyd completo. TryHackMe trilha Pre-Security. Linux no OverTheWire. Redes: TCP/IP, DNS, HTTP.</div><div class="phase-time">⏱ 0–3 meses</div></div></div>
+      <div class="phase-block"><div class="phase-num">2</div><div class="phase-content"><div class="phase-title">🇬🇧 Inglês Técnico em Paralelo</div><div class="phase-desc">Duolingo diário (15min). Vídeos cyber em inglês (NetworkChuck, John Hammond). Writeups em inglês. Vocab técnico anotado aqui.</div><div class="phase-time">⏱ Começa hoje, nunca para</div></div></div>
+      <div class="phase-block"><div class="phase-num">3</div><div class="phase-content"><div class="phase-title">🏆 Certificações Estratégicas</div><div class="phase-desc">CompTIA Security+ (ano 1) → eJPT (ano 2) → OSCP (ano 3). Essa sequência é a porta de entrada para o mercado suíço.</div><div class="phase-time">⏱ 3–30 meses</div></div></div>
+      <div class="phase-block"><div class="phase-num">4</div><div class="phase-content"><div class="phase-title">🖥️ Portfólio & GitHub</div><div class="phase-desc">Writeups dos desafios TryHackMe/HackTheBox. Projetos documentados. LinkedIn em inglês focado em cyber.</div><div class="phase-time">⏱ 6–24 meses</div></div></div>
+      <div class="phase-block"><div class="phase-num">5</div><div class="phase-content"><div class="phase-title">🇩🇪 Alemão para Zurique</div><div class="phase-desc">Começa no mês 4. Meta: B2 em 3 anos. Duolingo + séries alemãs + rádio.</div><div class="phase-time">⏱ Mês 4 → 36</div></div></div>
+      <div class="phase-block"><div class="phase-num">6</div><div class="phase-content"><div class="phase-title">✈️ Candidatura & Mudança</div><div class="phase-desc">Jobs.ch, LinkedIn CH, Indeed.ch. Entrevistas técnicas em inglês. Permit B para brasileiros. Meta: 2028.</div><div class="phase-time">⏱ 30–36 meses</div></div></div>
+    </div>
+
+    <div class="sh"><span class="sh-num">ANO 1</span><span class="sh-title">2025–2026 · Construindo a Base</span><div class="sh-line"></div></div>
+    <div class="year-block yb1">
+      <div class="year-label" style="color:var(--cyan)">// ano 1</div><div class="year-title">🔰 Fundamentos Sólidos</div>
+      <div class="year-desc">Terminar Senai + Solyd fases 0–2. Inglês saindo do zero. CompTIA Security+. OSINT introdutório.</div>
+      <div class="quarters">
+        <div class="quarter"><div class="q-label">Q1 — meses 1–3</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>Solyd: Fase 0 completa (Linux, Python, Crypto)</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês: Duolingo diário + vocab cyber</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>TryHackMe: trilha Pre-Security</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>Criar GitHub e LinkedIn</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q2 — meses 4–6</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>Solyd: Fase 1 — Redes e Reconhecimento</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês: vídeos sem legenda PT</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>🇩🇪 ALEMÃO COMEÇA: Duolingo A1</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>1º writeup publicado no GitHub!</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q3 — meses 7–9</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--pink)"></div>Solyd: Fase 2 — Web e Wi-Fi</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>Estudar CompTIA Security+</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>OSINT: Google Dorks + Maltego básico</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão A1 consolidado</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q4 — meses 10–12</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>🏆 CompTIA Security+ — TIRAR!</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês B1 — conversas simples</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão A2 iniciando</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>5 writeups no GitHub</div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-num">ANO 2</span><span class="sh-title">2026–2027 · Especialização Real</span><div class="sh-line"></div></div>
+    <div class="year-block yb2">
+      <div class="year-label" style="color:var(--green)">// ano 2</div><div class="year-title">⚔️ Pentest + OSINT Avançado</div>
+      <div class="year-desc">Solyd fases 3–5. OSINT profissional. Inglês B2. Alemão B1. eJPT. Primeiro emprego em cyber no Brasil.</div>
+      <div class="quarters">
+        <div class="quarter"><div class="q-label">Q1 — meses 13–15</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Solyd: Fase 3 (Hardware, Social Eng.)</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>OSINT: Shodan, Recon-ng, theHarvester</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Estudar para eJPT</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>Candidatar emprego júnior cyber BR</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q2 — meses 16–18</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>🏆 eJPT — TIRAR!</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--orange)"></div>Solyd: Fase 4 — Mobile e Cloud</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês B2 funcional</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão B1: séries alemãs legenda DE</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q3 — meses 19–21</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--red)"></div>Solyd: Fase 5 iniciando (Malware)</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>CTF competitivo — CTFtime.org</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>HackTheBox: 10+ máquinas médias</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão B1 sólido</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q4 — meses 22–24</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--red)"></div>Solyd: Fase 5 completa + todas certs</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês B2 — entrevistas em inglês</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão B1/B2 iniciando</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>15+ writeups + projetos GitHub</div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-num">ANO 3</span><span class="sh-title">2027–2028 · Decolagem</span><div class="sh-line"></div></div>
+    <div class="year-block yb3">
+      <div class="year-label" style="color:var(--purple)">// ano 3</div><div class="year-title">🚀 OSCP + Candidatura Suíça</div>
+      <div class="year-desc">OSCP. Inglês C1. Alemão B2. Candidaturas ativas na Suíça. Você chega como profissional.</div>
+      <div class="quarters">
+        <div class="quarter"><div class="q-label">Q1–Q2 — meses 25–30</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>PWK + lab OSCP intensivo</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>🏆 OSCP — TIRAR!</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês C1: fluente</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão B2: conversação funcional</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Q3–Q4 — meses 31–36</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>Candidaturas: jobs.ch e LinkedIn CH</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>Entrevistas técnicas em inglês</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Permit B / documentação de visto</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>✈️ DECOLAGEM PARA A SUÍÇA</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Perfil ao chegar 🇨🇭</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>Security+ + eJPT + OSCP + certs Solyd</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Inglês C1 fluente</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--purple)"></div>Alemão B2 funcional</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--cyan)"></div>Portfólio GitHub sólido</div>
+        </div></div>
+        <div class="quarter"><div class="q-label">Salário esperado 💰</div><div class="q-items">
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>CHF 110.000–130.000 / ano</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--yellow)"></div>~R$ 60.000–70.000 por mês</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Opção: morar Alemanha fronteiriça</div>
+          <div class="q-item"><div class="q-dot" style="background:var(--green)"></div>Salário suíço + custo europeu = 💪</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="final-card">
+      <span style="font-size:2.3rem;display:block;margin-bottom:9px">🇨🇭</span>
+      <h2>Em 3 anos, você não vai ser qualquer um.</h2>
+      <p>Security+, eJPT e OSCP no currículo. Inglês C1 e alemão B2. Portfólio real. 3 anos de disciplina.<br><br>
+      <strong style="color:var(--cyan)">A Suíça não vai te contratar por sorte. Vai te contratar porque você vai merecer.</strong></p>
+    </div>
+  </div>
+
+  <!-- SENAI -->
+  <div class="panel" id="panel-senai">
+    <div class="tip y"><strong>🎓 3º semestre Senai</strong> — JavaScript e IoT conectam diretamente com cyber. Veja como aproveitar cada matéria!</div>
+    <div class="senai-grid">
+      <div class="senai-card">
+        <div class="senai-subject" style="color:var(--yellow)">JavaScript 🟨</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--yellow)"></div>Aprenda JS pensando em segurança: XSS, injeção de código</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--yellow)"></div>Conecta direto com "Ataque em Aplicações Web" da Solyd Fase 2</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--yellow)"></div>Entender JS = encontrar vulnerabilidades em sites reais</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--yellow)"></div>Estude OWASP Top 10 em paralelo com as aulas de JS</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--yellow)"></div>Projetos JS do Senai podem ir pro portfólio GitHub</div>
+      </div>
+      <div class="senai-card">
+        <div class="senai-subject" style="color:var(--green)">IoT — Internet das Coisas 🌐</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--green)"></div>IoT é uma das áreas com mais vulnerabilidades no mundo hoje</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--green)"></div>Conecta com "Exploração de Hardware" e "Gadgets Red Team" Solyd</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--green)"></div>Aprenda protocolos: MQTT, Zigbee — depois veja como atacá-los</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--green)"></div>Na Suíça: empresas industriais adoram perfil IoT + Security</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--green)"></div>Shodan mostra dispositivos IoT expostos — use no lab!</div>
+      </div>
+      <div class="senai-card">
+        <div class="senai-subject" style="color:var(--cyan)">Como Tudo Se Conecta 🔗</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--cyan)"></div>Senai dá a base de programação → Solyd ensina como atacar</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--cyan)"></div>JS do Senai + Fase 2 Solyd = você entende ataque E defesa web</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--cyan)"></div>IoT do Senai + Hardware Hacking Solyd = especialidade rara</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--cyan)"></div>Cada projeto do Senai pode virar item do portfólio</div>
+      </div>
+      <div class="senai-card">
+        <div class="senai-subject" style="color:var(--purple)">Rotina Senai + Solyd 📅</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--purple)"></div>Manhã/tarde: aulas Senai normalmente</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--purple)"></div>1h por dia: módulos da Solyd (fase 0 primeiro)</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--purple)"></div>15min: Duolingo inglês (antes do café!)</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--purple)"></div>Fim de semana: TryHackMe + prática livre</div>
+        <div class="senai-item"><div class="si-dot" style="background:var(--purple)"></div>Consistência &gt; intensidade. Todo dia, mesmo 30min.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INGLÊS -->
+  <div class="panel" id="panel-ingles">
+    <div class="sh"><span class="sh-num">VOCAB</span><span class="sh-title">Vocabulário Técnico — Cyber em Inglês</span><div class="sh-line"></div></div>
+    <p style="font-size:.77rem;color:var(--muted);margin-bottom:12px">Clique ou toque no card para revelar a tradução e exemplo!</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+    <div class="sh"><span class="sh-num">DICAS</span><span class="sh-title">Como Aprender com TDAH</span><div class="sh-line"></div></div>
+    <div class="tdah-grid">
+      <div class="tdah-card"><div class="tdah-tip-title">⏱️ 15min/dia Duolingo</div><div class="tdah-tip-text">Consistência bate intensidade. Todo dia, sem exceção — mesmo 10min.</div></div>
+      <div class="tdah-card y"><div class="tdah-tip-title">🎧 Darknet Diaries</div><div class="tdah-tip-text">Podcast de cyber em inglês com histórias reais de hackers. Viciante e educativo.</div></div>
+      <div class="tdah-card g"><div class="tdah-tip-title">🎮 TryHackMe em inglês</div><div class="tdah-tip-text">Cyber + inglês ao mesmo tempo. Não use interface em PT.</div></div>
+      <div class="tdah-card p"><div class="tdah-tip-title">📖 Repetição Espaçada</div><div class="tdah-tip-text">Anote palavras novas aqui. Revise 3x por semana. TDAH fixa com repetição.</div></div>
+      <div class="tdah-card r"><div class="tdah-tip-title">🗣️ Fale em Voz Alta</div><div class="tdah-tip-text">Repita comandos em inglês em voz alta. Ativa a memória muscular.</div></div>
+      <div class="tdah-card"><div class="tdah-tip-title">📺 NetworkChuck</div><div class="tdah-tip-text">YouTube de redes e cyber em inglês. Explica de forma animada — perfeito para TDAH.</div></div>
+    </div>
+    <div class="sh" style="margin-top:18px"><span class="sh-num">IDIOMAS</span><span class="sh-title">Progresso por Fase</span><div class="sh-line"></div></div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-flag">🇬🇧</div><div class="lang-name">Inglês</div>
+        <div class="lang-goal">Meta: C1 em 3 anos. Hoje: básico. Você aprende cyber EM inglês — isso acelera muito.</div>
+        <div class="lang-phase"><span class="lp-period">Mês 1–6</span><span class="lp-level" style="background:rgba(0,229,255,.1);color:var(--cyan)">A2→B1</span><span>Duolingo + vocab cyber</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 7–14</span><span class="lp-level" style="background:rgba(57,255,20,.1);color:var(--green)">B1→B2</span><span>Vídeos sem legenda PT</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 15–24</span><span class="lp-level" style="background:rgba(255,204,0,.1);color:var(--yellow)">B2</span><span>Conversação, podcasts</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 25–36</span><span class="lp-level" style="background:rgba(191,95,255,.1);color:var(--purple)">C1 ✓</span><span>Fluente — reuniões profissionais</span></div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇩🇪</div><div class="lang-name">Alemão</div>
+        <div class="lang-goal">Meta: B2 funcional. Começa no mês 4. Difícil mas tem lógica forte.</div>
+        <div class="lang-phase"><span class="lp-period">Mês 4–8</span><span class="lp-level" style="background:rgba(0,229,255,.1);color:var(--cyan)">A1</span><span>Duolingo + frases básicas</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 9–15</span><span class="lp-level" style="background:rgba(57,255,20,.1);color:var(--green)">A2</span><span>Conversas simples</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 16–24</span><span class="lp-level" style="background:rgba(255,204,0,.1);color:var(--yellow)">B1</span><span>Séries alemãs, rádio</span></div>
+        <div class="lang-phase"><span class="lp-period">Mês 25–36</span><span class="lp-level" style="background:rgba(191,95,255,.1);color:var(--purple)">B2 ✓</span><span>Trabalhar em Zurique</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTAS -->
+  <div class="panel" id="panel-notas">
+    <div class="notes-cats">
+      <button class="ncat active" onclick="setCat(this,'Cyber')">🔐 Cyber</button>
+      <button class="ncat" onclick="setCat(this,'Solyd')">📚 Solyd</button>
+      <button class="ncat" onclick="setCat(this,'HTML')">🌐 HTML</button>
+      <button class="ncat" onclick="setCat(this,'CSS')">🎨 CSS</button>
+      <button class="ncat" onclick="setCat(this,'JS')">⚡ JS</button>
+      <button class="ncat" onclick="setCat(this,'Comando')">💻 Comando</button>
+      <button class="ncat" onclick="setCat(this,'Inglês')">🇬🇧 Inglês</button>
+      <button class="ncat" onclick="setCat(this,'Dúvida')">❓ Dúvida</button>
+      <button class="ncat" onclick="setCat(this,'Ideia')">💡 Ideia</button>
+    </div>
+
+    <div class="note-area">
+      <textarea class="note-input" id="noteIn" placeholder="Anote: conceito, comando, dúvida... (Ctrl+Enter para salvar)" rows="3"></textarea>
+      <button class="btn-save" onclick="saveNote()">+ Salvar</button>
+    </div>
+    <div id="notesList"></div>
+  </div>
+
+  <!-- CÓDIGO -->
+  <div class="panel" id="panel-codigo">
+    <div class="sh"><span class="sh-num">DEV</span><span class="sh-title">Visualizador de Código</span><div class="sh-line"></div></div>
+    <div class="tip"><strong>💾 Cole seu código aqui</strong> para visualizar formatado e salvar. Funciona como um GitHub pessoal!</div>
+
+    <!-- Formulário de novo arquivo -->
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:16px;margin-bottom:16px">
+      <div style="display:flex;gap:9px;margin-bottom:10px;flex-wrap:wrap">
+        <input id="codeFileName" placeholder="Nome do arquivo (ex: index.html)" style="flex:1;min-width:160px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'">
+        <select id="codeLang" style="background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none;cursor:pointer">
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="cpp">C++ / Arduino</option>
+          <option value="bash">Bash / Linux</option>
+        </select>
+        <button onclick="saveCode()" style="padding:9px 18px;background:var(--cyan);border:none;border-radius:9px;color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;transition:all .2s">💾 Salvar</button>
+      </div>
+      <textarea id="codeInput" placeholder="Cole ou escreva seu código aqui..." style="width:100%;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.8rem;outline:none;resize:vertical;min-height:140px;line-height:1.6;transition:border-color .2s;tab-size:2" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'" onkeydown="handleTab(event)"></textarea>
+    </div>
+
+    <!-- Upload de ZIP -->
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:16px;margin-bottom:16px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;margin-bottom:10px">📦 IMPORTAR ZIP</div>
+      <div id="zipDropArea" onclick="document.getElementById('zipInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--cyan)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="handleZipDrop(event)" style="border:2px dashed var(--border);border-radius:10px;padding:22px;text-align:center;cursor:pointer;transition:border-color .2s">
+        <div style="font-size:1.6rem;margin-bottom:6px">📁</div>
+        <div style="font-size:.8rem;color:var(--text);margin-bottom:3px">Clique ou arraste seu <strong>.zip</strong> aqui</div>
+        <div style="font-size:.68rem;color:var(--muted)">Extrai automaticamente todos os arquivos de texto do projeto</div>
+      </div>
+      <input id="zipInput" type="file" accept=".zip" style="display:none" onchange="handleZipFile(this.files[0])">
+      <div id="zipStatus" style="margin-top:8px;font-size:.75rem;color:var(--green);font-family:'JetBrains Mono',monospace;display:none"></div>
+    </div>
+
+    <!-- Lista de arquivos salvos -->
+    <div id="codeFilesList"></div>
+
+    <!-- Modal: visualização combinada -->
+    <div id="modalCombinado" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;overflow-y:auto;padding:20px">
+      <div style="max-width:860px;margin:0 auto;background:var(--s1);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)">
+          <span style="font-family:'Unbounded',sans-serif;font-size:.9rem;font-weight:700;color:#fff;flex:1">📋 Código Completo do Projeto</span>
+          <button onclick="document.getElementById('modalCombinado').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px 8px">✕</button>
+        </div>
+        <div id="modalConteudo" style="padding:18px;display:flex;flex-direction:column;gap:14px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOCO -->
+  <div class="panel" id="panel-foco">
+    <div class="timer-box">
+      <div class="t-mode-row">
+        <button class="t-mode active" onclick="setMode('foco',25,this)">25min Foco</button>
+        <button class="t-mode" onclick="setMode('pausa',5,this)">5min Pausa</button>
+        <button class="t-mode" onclick="setMode('longa',15,this)">15min Pausa Longa</button>
+      </div>
+      <div class="t-label" id="tLabel">MODO FOCO</div>
+      <div class="t-display" id="tDisplay">25:00</div>
+      <input class="t-task-input" id="tTask" placeholder="O que você vai estudar agora? Ex: Módulo 1 da Solyd">
+      <div class="t-btns">
+        <button class="t-btn primary" id="tBtn" onclick="toggleTimer()">▶ Iniciar</button>
+        <button class="t-btn" onclick="resetTimer()">↺ Reset</button>
+      </div>
+    </div>
+    <div class="tip"><strong>⚡ Regra TDAH #1:</strong> Define UMA tarefa antes de apertar play. Celular no outro cômodo. Se a mente vagar — vai nas Notas, anota e volta.</div>
+    <div class="tip y"><strong>🍅 Pomodoro:</strong> 25min foco → 5min pausa → repete 4x → 15min pausa longa.</div>
+    <div class="tip g"><strong>🎯 Meta de hoje:</strong> 1 módulo Solyd OU 1 sala TryHackMe. Só um. Feito é melhor que perfeito.</div>
+    <div class="tip p"><strong>🧠 Lembra sempre:</strong> 1h por dia por 3 anos vale mais que 10h num fim de semana e parar por um mês.</div>
+  </div>
+
+  <!-- IA MENTOR -->
+  <div class="panel" id="panel-ia">
+    <div style="background:linear-gradient(135deg,rgba(0,229,255,.07),rgba(191,95,255,.05));border:1px solid rgba(0,229,255,.2);border-radius:15px;padding:18px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-size:1.4rem">🤖</span>
+        <div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:.85rem;font-weight:700;color:#fff">CyberMentor IA</div>
+          <div style="font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace">powered by Claude · seu mentor pessoal</div>
+        </div>
+        <div id="iaStatus" style="margin-left:auto;font-size:.62rem;font-family:'JetBrains Mono',monospace;color:var(--green);background:rgba(57,255,20,.1);border:1px solid rgba(57,255,20,.2);padding:3px 10px;border-radius:50px">● online</div>
+      </div>
+      <p style="font-size:.76rem;color:var(--muted);line-height:1.6">Pergunte qualquer coisa sobre cyber, seus módulos, dúvidas das notas, o que estudar a seguir — o mentor lê seu progresso automaticamente antes de responder.</p>
+    </div>
+
+    <!-- QUICK PROMPTS -->
+    <div style="margin-bottom:14px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Perguntas rápidas</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;" id="quickPrompts">
+        <button class="quick-btn" onclick="quickAsk('Analise meu progresso atual e me diga o que devo estudar agora.')">📊 Analisar meu progresso</button>
+        <button class="quick-btn" onclick="quickAsk('Quais são minhas notas de dúvida salvas? Explique cada uma.')">❓ Responder minhas dúvidas</button>
+        <button class="quick-btn" onclick="quickAsk('Me dê dicas práticas de TDAH para o módulo que estou estudando agora.')">🧠 Dicas TDAH para agora</button>
+        <button class="quick-btn" onclick="quickAsk('Explique em detalhes o próximo módulo que devo estudar e como me preparar.')">📚 Próximo módulo</button>
+        <button class="quick-btn" onclick="quickAsk('Como estou no caminho para a Suíça? O que preciso acelerar?')">🇨🇭 Status rumo à Suíça</button>
+        <button class="quick-btn" onclick="quickAsk('Me explique a diferença entre Pentest e OSINT e como eles se complementam.')">🕵️ Pentest vs OSINT</button>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <div id="iaChat" style="background:var(--s1);border:1px solid var(--border);border-radius:13px;min-height:280px;max-height:420px;overflow-y:auto;padding:14px;margin-bottom:12px;display:flex;flex-direction:column;gap:12px;">
+      <div style="text-align:center;padding:30px 16px;color:var(--muted);">
+        <div style="font-size:2rem;margin-bottom:8px">🤖</div>
+        <div style="font-size:.8rem;line-height:1.6">Olá! Sou o CyberMentor. Leio seu progresso, suas notas e dúvidas automaticamente.<br>Como posso te ajudar hoje?</div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div style="display:flex;gap:9px;">
+      <textarea id="iaInput" placeholder="Pergunta qualquer coisa: explica XSS, o que é reverse shell, como estudar este módulo com TDAH..." style="flex:1;background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.81rem;outline:none;resize:none;min-height:60px;transition:border-color .2s;" onkeydown="if(event.ctrlKey&&event.key==='Enter')sendIA()"></textarea>
+      <button onclick="sendIA()" id="iaSendBtn" style="padding:11px 18px;background:linear-gradient(135deg,var(--cyan),#0088bb);border:none;border-radius:11px;color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;align-self:flex-start;transition:all .2s;white-space:nowrap;box-shadow:0 0 14px rgba(0,229,255,.2)">▶ Enviar</button>
+    </div>
+    <div style="font-size:.62rem;color:var(--muted);margin-top:6px;font-family:'JetBrains Mono',monospace">Ctrl+Enter para enviar · O mentor lê seu progresso e notas automaticamente</div>
+  </div>
+
+  <!-- XP / NÍVEIS -->
+  <div class="panel" id="panel-xp">
+    <div class="sh"><span class="sh-num">⚡</span><span class="sh-title">Seu Progresso de XP</span><div class="sh-line"></div></div>
+
+    <!-- Card nível atual -->
+    <div id="xpLevelCard" style="background:linear-gradient(135deg,rgba(255,204,0,.1),rgba(255,140,66,.08));border:1px solid rgba(255,204,0,.25);border-radius:16px;padding:22px;margin-bottom:16px;text-align:center">
+      <div id="xpLevelIcon" style="font-size:3rem;margin-bottom:6px">🐣</div>
+      <div id="xpLevelName" style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--yellow);margin-bottom:4px">Script Kiddie</div>
+      <div id="xpLevelNum" style="font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:14px">NÍVEL 1</div>
+      <div style="display:flex;justify-content:center;gap:30px;margin-bottom:16px">
+        <div><div id="xpTotal" style="font-size:1.6rem;font-weight:700;color:var(--yellow);font-family:'Unbounded',sans-serif">0</div><div style="font-size:.65rem;color:var(--muted)">XP Total</div></div>
+        <div><div id="xpToNext" style="font-size:1.6rem;font-weight:700;color:var(--cyan);font-family:'Unbounded',sans-serif">200</div><div style="font-size:.65rem;color:var(--muted)">Para próx. nível</div></div>
+        <div id="xpStreak" style="display:flex;align-items:center;gap:8px"></div>
+      </div>
+      <!-- Barra XP -->
+      <div style="background:rgba(255,255,255,.06);border-radius:50px;height:12px;overflow:hidden;max-width:400px;margin:0 auto">
+        <div id="xpBar" style="height:100%;background:linear-gradient(90deg,var(--yellow),var(--orange));border-radius:50px;width:0%;transition:width .6s cubic-bezier(.34,1.56,.64,1)"></div>
+      </div>
+      <div id="xpBarLabel" style="font-size:.65rem;color:var(--muted);margin-top:6px;font-family:'JetBrains Mono',monospace">0 / 200 XP</div>
+    </div>
+
+    <!-- Tabela de níveis -->
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-bottom:16px">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px">TODOS OS NÍVEIS</div>
+      <div id="xpLevelTable" style="padding:10px 8px;display:flex;flex-direction:column;gap:4px"></div>
+    </div>
+
+    <!-- Histórico de XP -->
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:13px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px">HISTÓRICO DE XP</div>
+        <button onclick="clearXpLog()" style="background:none;border:none;color:var(--muted);font-size:.65rem;cursor:pointer;font-family:'JetBrains Mono',monospace">limpar histórico</button>
+        <button onclick="resetXP()" style="background:rgba(255,56,96,.1);border:1px solid rgba(255,56,96,.3);border-radius:6px;color:var(--red);font-size:.65rem;cursor:pointer;font-family:'JetBrains Mono',monospace;padding:3px 8px">⚠️ resetar XP</button>
+      </div>
+      <div id="xpLog" style="padding:10px 14px;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:6px">
+        <div style="text-align:center;padding:20px;color:var(--muted);font-size:.75rem">Nenhuma ação ainda. Comece a estudar! 🚀</div>
+      </div>
+    </div>
+
+    <!-- Tarefas manuais -->
+    <div style="margin-top:16px;background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:14px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;margin-bottom:12px">📁 NOVA TAREFA (+30 XP com código · +5 XP sem código)</div>
+
+      <!-- Nome da tarefa = nome da pasta -->
+      <input id="xpTaskInput" placeholder="Nome da pasta / tarefa: Ex: Exercício CSS Senai, Módulo 3 Solyd..." style="width:100%;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none;transition:border-color .2s;margin-bottom:8px;box-sizing:border-box" onfocus="this.style.borderColor='var(--yellow)'" onblur="this.style.borderColor='var(--border)'">
+
+      <!-- Arquivos da tarefa -->
+      <div id="taskFileList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px"></div>
+
+      <!-- Botão adicionar arquivo -->
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <input id="xpTaskFileName" placeholder="Nome do arquivo: ex: index.html" style="flex:1;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.75rem;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'">
+        <select id="xpTaskLang" style="background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.75rem;outline:none;cursor:pointer">
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="javascript">JS</option>
+          <option value="python">Python</option>
+          <option value="cpp">C++</option>
+          <option value="bash">Bash</option>
+        </select>
+        <button onclick="addTaskFile()" style="padding:8px 14px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);border-radius:9px;color:var(--cyan);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;white-space:nowrap">+ Arquivo</button>
+      </div>
+
+      <!-- Área de código com drag ZIP -->
+      <textarea id="xpTaskCode" placeholder="Cole o código do arquivo aqui... (ou arraste um .zip para importar todos os arquivos de uma vez)" style="width:100%;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.75rem;outline:none;resize:vertical;min-height:90px;line-height:1.6;transition:border-color .2s;box-sizing:border-box;margin-bottom:4px;tab-size:2" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'" onkeydown="handleTab(event)" ondragover="event.preventDefault();this.style.borderColor='var(--cyan)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="handleTaskZipDrop(event)"></textarea>
+      <div style="font-size:.62rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:10px">💡 Arraste um .zip para importar todos os arquivos do projeto de uma vez</div>
+
+      <div style="display:flex;justify-content:flex-end">
+        <button onclick="addManualTask()" style="padding:9px 22px;background:var(--yellow);border:none;border-radius:9px;color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer">✅ Salvar Tarefa</button>
+      </div>
+    </div>
+
+    <!-- Lista de pastas de tarefas -->
+    <div id="taskFolderList" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- Widget flutuante de nível -->
+<div id="xpWidget" onclick="showTab('xp');document.querySelectorAll('.tab').forEach(t=>{if(t.textContent.includes('XP'))t.classList.add('active');else t.classList.remove('active')})" style="position:fixed;bottom:22px;right:22px;background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(255,204,0,.3);border-radius:16px;padding:10px 14px;cursor:pointer;z-index:998;box-shadow:0 4px 24px rgba(0,0,0,.5),0 0 20px rgba(255,204,0,.1);transition:transform .2s;min-width:130px" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+    <span id="wIcon" style="font-size:1.1rem">🐣</span>
+    <div>
+      <div id="wName" style="font-size:.62rem;font-weight:700;color:var(--yellow);font-family:'Unbounded',sans-serif">Script Kiddie</div>
+      <div id="wLevel" style="font-size:.55rem;color:var(--muted);font-family:'JetBrains Mono',monospace">NÍV. 1</div>
+    </div>
+    <div id="wXp" style="margin-left:auto;font-size:.7rem;font-weight:700;color:var(--yellow);font-family:'JetBrains Mono',monospace">0 XP</div>
+  </div>
+  <div style="background:rgba(255,255,255,.06);border-radius:50px;height:5px;overflow:hidden">
+    <div id="wBar" style="height:100%;background:linear-gradient(90deg,var(--yellow),var(--orange));border-radius:50px;width:0%;transition:width .6s ease"></div>
+  </div>
+</div>
+
+<!-- Toast XP -->
+<div id="xpToast" style="position:fixed;bottom:90px;right:22px;background:linear-gradient(135deg,rgba(255,204,0,.15),rgba(255,140,66,.1));border:1px solid rgba(255,204,0,.4);border-radius:12px;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--yellow);z-index:999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;white-space:nowrap"></div>
+
+<style>
+.quick-btn{padding:6px 13px;border-radius:50px;border:1px solid var(--border);background:var(--s1);color:var(--muted);font-size:.72rem;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.quick-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.05)}
+.ia-msg{display:flex;gap:10px;animation:fadeUp .3s ease}
+.ia-msg.user{flex-direction:row-reverse}
+.ia-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:2px}
+.ia-bubble{max-width:85%;padding:11px 14px;border-radius:13px;font-size:.8rem;line-height:1.65}
+.ia-msg.user .ia-bubble{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:var(--text);border-radius:13px 13px 4px 13px}
+.ia-msg.bot .ia-bubble{background:var(--s2);border:1px solid var(--border);color:var(--text);border-radius:13px 13px 13px 4px}
+.ia-typing{display:flex;gap:4px;align-items:center;padding:4px 0}
+.ia-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:bounce .8s infinite}
+.ia-dot:nth-child(2){animation-delay:.15s}.ia-dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+</style>
+
+<script>
+function showTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active')}
+
+const phases={p0:[{icon:'🎓',title:'Introdução ao Solyd One',tag:'início'},{icon:'🔒',title:'Fundamentos de Segurança da Informação e Pentest',tag:'base'},{icon:'🐧',title:'Dominando o Unix & Shell para Pentesters',tag:'linux'},{icon:'🔑',title:'Fundamentos de Criptografia e Senhas',tag:'crypto'},{icon:'🐍',title:'Introdução ao Python e Algoritmos',tag:'python'},{icon:'🤖',title:'Python Orientado a Objetos e Automação',tag:'python'}],p1:[{icon:'🌐',title:'Fundamentos de Redes para Pentesters',tag:'redes'},{icon:'🐍',title:'Dominando o Pentest em Infraestrutura de Redes',tag:'redes'},{icon:'🎯',title:'Dominando o Reconhecimento em Pentest de Redes',tag:'recon'}],p2:[{icon:'💻',title:'Desenvolvimento Web para Pentesters',tag:'web'},{icon:'📡',title:'Ataque em Redes Wi-Fi',tag:'wifi'},{icon:'🔓',title:'Ataque em Aplicações Web',tag:'web'},{icon:'📶',title:'Segurança em Redes Wi-Fi',tag:'wifi'}],p3:[{icon:'⚡',title:'Fundamentos de Eletrônica',tag:'hardware'},{icon:'🎮',title:'Gadgets para Red Team',tag:'hardware'},{icon:'🕹️',title:'Exploração de Jogos com Hardware',tag:'hardware'},{icon:'🎭',title:'Técnicas de Phishing e Engenharia Social',tag:'social'},{icon:'💥',title:'Ataques DoS e DDoS',tag:'ataques'},{icon:'👤',title:'Fundamentos de Privacidade e Anonimato',tag:'osint'},{icon:'🤖',title:'LLM Hacking — IA e Privacidade',tag:'ia'},{icon:'🔀',title:'Ataques Man-in-the-Middle (MiTM)',tag:'ataques'},{icon:'🔧',title:'Hardware Hacking na Prática',tag:'hardware'}],p4:[{icon:'📱',title:'Pentest em Ambientes Android',tag:'mobile'},{icon:'☁️',title:'Pentest em Ambientes Nuvem (Cloud)',tag:'cloud'},{icon:'🤖',title:'Automação e Desenvolvimento para Bug Bounty',tag:'bounty'},{icon:'🧠',title:'Inteligência Artificial para Pentesters',tag:'ia'}],p5:[{icon:'🦠',title:'Desenvolvimento de Malwares para Android',tag:'malware'},{icon:'🐋',title:'Docker para Pentesters',tag:'infra'},{icon:'💉',title:'Pós-Exploração no Linux',tag:'post-exp'},{icon:'🪟',title:'Pós-Exploração Windows e Active Directory',tag:'windows'},{icon:'🔬',title:'Análise e Desenvolvimento de Malwares',tag:'malware'},{icon:'🫥',title:'Técnicas de Evasão de Antivírus e EDR',tag:'evasão'},{icon:'📜',title:'Fundamentos de C para Pentesters',tag:'linguagem'},{icon:'⚙️',title:'Fundamentos de PowerShell para Pentesters',tag:'windows'},{icon:'🔩',title:'Assembly para Pentesters e Desenvolvimento de Exploits',tag:'exploit'},{icon:'📋',title:'Metodologias de Pentest na Prática',tag:'metodologia'}]};
+const tagColors={'início':['rgba(0,229,255,.12)','var(--cyan)'],'base':['rgba(0,229,255,.12)','var(--cyan)'],'linux':['rgba(57,255,20,.12)','var(--green)'],'crypto':['rgba(255,204,0,.12)','var(--yellow)'],'python':['rgba(255,204,0,.12)','var(--yellow)'],'redes':['rgba(255,204,0,.12)','var(--yellow)'],'recon':['rgba(0,229,255,.12)','var(--cyan)'],'web':['rgba(255,110,180,.12)','var(--pink)'],'wifi':['rgba(255,110,180,.12)','var(--pink)'],'hardware':['rgba(191,95,255,.12)','var(--purple)'],'social':['rgba(191,95,255,.12)','var(--purple)'],'ataques':['rgba(255,56,96,.12)','var(--red)'],'osint':['rgba(0,229,255,.12)','var(--cyan)'],'ia':['rgba(191,95,255,.12)','var(--purple)'],'mobile':['rgba(255,140,66,.12)','var(--orange)'],'cloud':['rgba(255,140,66,.12)','var(--orange)'],'bounty':['rgba(255,140,66,.12)','var(--orange)'],'malware':['rgba(255,56,96,.12)','var(--red)'],'infra':['rgba(57,255,20,.12)','var(--green)'],'post-exp':['rgba(255,56,96,.12)','var(--red)'],'windows':['rgba(0,229,255,.12)','var(--cyan)'],'evasão':['rgba(255,56,96,.12)','var(--red)'],'linguagem':['rgba(255,204,0,.12)','var(--yellow)'],'exploit':['rgba(255,56,96,.12)','var(--red)'],'metodologia':['rgba(57,255,20,.12)','var(--green)']};
+let doneModules=JSON.parse(localStorage.getItem('cp_done')||'{}');
+let xpModulesRewarded=JSON.parse(localStorage.getItem('cp_xp_mods')||'{}'); // rastreia quais módulos já deram XP
+Object.keys(phases).forEach(phase=>{const grid=document.getElementById('grid-'+phase);phases[phase].forEach((mod,i)=>{const key=phase+'_'+i;const done=!!doneModules[key];const[tagBg,tagColor]=tagColors[mod.tag]||['rgba(0,229,255,.12)','var(--cyan)'];const card=document.createElement('div');card.className='mod-card'+(done?' done':'');card.innerHTML=`<div class="mod-check">${done?'✓':''}</div><div class="mod-icon">${mod.icon}</div><div class="mod-title">${mod.title}</div><span class="mod-tag" style="background:${tagBg};color:${tagColor}">${mod.tag}</span>`;card.onclick=()=>{const nowDone=!doneModules[key];doneModules[key]=nowDone;localStorage.setItem('cp_done',JSON.stringify(doneModules));card.classList.toggle('done',nowDone);card.querySelector('.mod-check').textContent=nowDone?'✓':'';if(nowDone&&!xpModulesRewarded[key]){xpModulesRewarded[key]=true;localStorage.setItem('cp_xp_mods',JSON.stringify(xpModulesRewarded));gainXP(XP_REWARDS.modulo,'Módulo concluído: '+mod.title)}else if(!nowDone&&xpModulesRewarded[key]){xpModulesRewarded[key]=false;localStorage.setItem('cp_xp_mods',JSON.stringify(xpModulesRewarded));xpData.total=Math.max(0,xpData.total-XP_REWARDS.modulo);xpData.log.unshift({amount:-XP_REWARDS.modulo,reason:'Módulo desmarcado: '+mod.title,date:new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});saveXP();updateXPUI();showXPToast('-'+XP_REWARDS.modulo+' XP — '+mod.title)}updateStats()};grid.appendChild(card)})});
+// ===== SISTEMA XP =====
+const XP_LEVELS = [
+  {lvl:1, name:'Script Kiddie', icon:'🐣', xp:0},
+  {lvl:2, name:'Coder',         icon:'💻', xp:200},
+  {lvl:3, name:'Recon',         icon:'🔍', xp:500},
+  {lvl:4, name:'Bug Hunter',    icon:'🐛', xp:1000},
+  {lvl:5, name:'Pentester',     icon:'🔓', xp:2000},
+  {lvl:6, name:'OSINT Master',  icon:'🕵️', xp:3500},
+  {lvl:7, name:'Elite Hacker',  icon:'💀', xp:5000},
+  {lvl:8, name:'Swiss Pro',     icon:'🇨🇭', xp:7500},
+];
+const XP_REWARDS = {modulo:100, nota:10, pomodoro:25, codigo:15, zip:20, ia:5, tarefa:30};
+
+let xpData = JSON.parse(localStorage.getItem('cp_xp') || '{"total":0,"log":[],"streak":0,"lastDate":""}');
+// Garante campos novos para saves antigos
+if (!xpData.streak) xpData.streak = 0;
+if (!xpData.lastDate) xpData.lastDate = '';
+
+function saveXP() { localStorage.setItem('cp_xp', JSON.stringify(xpData)); }
+
+// ---- STREAK ----
+function checkStreak() {
+  const today = new Date().toISOString().slice(0,10); // "2026-03-10"
+  if (xpData.lastDate === today) return; // já acessou hoje
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+  if (xpData.lastDate === yesterday) {
+    xpData.streak += 1; // dia consecutivo
+  } else if (xpData.lastDate !== '') {
+    xpData.streak = 1; // quebrou a sequência
+  } else {
+    xpData.streak = 1; // primeiro dia
+  }
+  xpData.lastDate = today;
+  saveXP();
+}
+checkStreak();
+
+function getCurrentLevel(xp) {
+  let cur = XP_LEVELS[0];
+  for (const l of XP_LEVELS) { if (xp >= l.xp) cur = l; else break; }
+  return cur;
+}
+function getNextLevel(xp) {
+  for (const l of XP_LEVELS) { if (l.xp > xp) return l; }
+  return null;
+}
+
+function gainXP(amount, reason) {
+  const prevLevel = getCurrentLevel(xpData.total);
+  xpData.total += amount;
+  xpData.log.unshift({ amount, reason, date: new Date().toLocaleString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) });
+  if (xpData.log.length > 50) xpData.log.pop();
+  saveXP();
+  const newLevel = getCurrentLevel(xpData.total);
+  updateXPUI();
+  showXPToast(`+${amount} XP — ${reason}`);
+  if (newLevel.lvl > prevLevel.lvl) setTimeout(() => showLevelUp(newLevel), 400);
+}
+
+function showXPToast(msg) {
+  const t = document.getElementById('xpToast');
+  t.textContent = '⚡ ' + msg;
+  t.style.opacity = '1';
+  t.style.transform = 'translateY(0)';
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.style.opacity='0'; t.style.transform='translateY(10px)'; }, 2500);
+}
+
+function showLevelUp(level) {
+  const t = document.getElementById('xpToast');
+  t.innerHTML = `🎉 LEVEL UP! ${level.icon} ${level.name}`;
+  t.style.background = 'linear-gradient(135deg,rgba(57,255,20,.2),rgba(0,229,255,.15))';
+  t.style.borderColor = 'rgba(57,255,20,.5)';
+  t.style.color = 'var(--green)';
+  t.style.opacity = '1';
+  t.style.transform = 'translateY(0)';
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => {
+    t.style.opacity='0'; t.style.transform='translateY(10px)';
+    t.style.background=''; t.style.borderColor=''; t.style.color='';
+  }, 4000);
+}
+
+function updateXPUI() {
+  const xp = xpData.total;
+  const cur = getCurrentLevel(xp);
+  const next = getNextLevel(xp);
+  const pct = next ? Math.round(((xp - cur.xp) / (next.xp - cur.xp)) * 100) : 100;
+  const streak = xpData.streak || 0;
+
+  // Widget flutuante
+  document.getElementById('wIcon').textContent = cur.icon;
+  document.getElementById('wName').textContent = cur.name;
+  document.getElementById('wLevel').textContent = 'NÍV. ' + cur.lvl;
+  document.getElementById('wXp').textContent = xp + ' XP';
+  document.getElementById('wBar').style.width = pct + '%';
+
+  // Painel XP
+  document.getElementById('xpLevelIcon').textContent = cur.icon;
+  document.getElementById('xpLevelName').textContent = cur.name;
+  document.getElementById('xpLevelNum').textContent = 'NÍVEL ' + cur.lvl;
+  document.getElementById('xpTotal').textContent = xp;
+  document.getElementById('xpToNext').textContent = next ? (next.xp - xp) : '—';
+  document.getElementById('xpBar').style.width = pct + '%';
+  document.getElementById('xpBarLabel').textContent = next ? `${xp - cur.xp} / ${next.xp - cur.xp} XP` : 'NÍVEL MÁXIMO! 🏆';
+
+  // Streak
+  const streakEl = document.getElementById('xpStreak');
+  if (streakEl) {
+    const fire = streak >= 7 ? '🔥' : streak >= 3 ? '⚡' : '📅';
+    streakEl.innerHTML = `<span style="font-size:1.4rem">${fire}</span><div><div style="font-size:1.1rem;font-weight:700;color:var(--orange);font-family:'Unbounded',sans-serif">${streak}</div><div style="font-size:.62rem;color:var(--muted)">dias seguidos</div></div>`;
+  }
+
+  // Tabela de níveis
+  const table = document.getElementById('xpLevelTable');
+  table.innerHTML = XP_LEVELS.map(l => {
+    const done = xp >= l.xp;
+    const active = l.lvl === cur.lvl;
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;background:${active?'rgba(255,204,0,.08)':'transparent'};border:1px solid ${active?'rgba(255,204,0,.2)':'transparent'}">
+      <span style="font-size:1.1rem">${l.icon}</span>
+      <div style="flex:1">
+        <div style="font-size:.78rem;font-weight:600;color:${done?'var(--text)':'var(--muted)'}">${l.name}</div>
+        <div style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${l.xp} XP</div>
+      </div>
+      <div style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:${active?'var(--yellow)':done?'var(--green)':'var(--muted)'}">${active?'← VOCÊ':done?'✓':''}</div>
+    </div>`;
+  }).join('');
+
+  // Log — BUG CORRIGIDO: renderiza direto no elemento
+  const log = document.getElementById('xpLog');
+  if (!xpData.log.length) {
+    log.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted);font-size:.75rem">Nenhuma ação ainda. Comece a estudar! 🚀</div>';
+  } else {
+    log.innerHTML = xpData.log.map(e => `
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+        <span style="font-size:.8rem;font-weight:700;color:${e.amount<0?'var(--red)':'var(--yellow)'};font-family:'JetBrains Mono',monospace;white-space:nowrap">${e.amount>0?'+':''}${e.amount}</span>
+        <span style="flex:1;font-size:.75rem;color:var(--text)">${e.reason}</span>
+        <span style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace;white-space:nowrap">${e.date}</span>
+      </div>`).join('');
+  }
+}
+
+// ===== SISTEMA DE PASTAS DE TAREFAS =====
+let taskFolders = JSON.parse(localStorage.getItem('cp_tasks') || '[]');
+// cada pasta: { id, name, date, xp, files: [{name, lang, code}] }
+let currentTaskFiles = []; // arquivos sendo adicionados no formulário
+
+function addTaskFile() {
+  const name = document.getElementById('xpTaskFileName').value.trim();
+  const lang = document.getElementById('xpTaskLang').value;
+  const code = document.getElementById('xpTaskCode').value.trim();
+  if (!name) { showXPToast('⚠️ Coloca o nome do arquivo!'); document.getElementById('xpTaskFileName').focus(); return; }
+  if (code.length < 20) { showXPToast('⚠️ Código muito curto! Mínimo 20 caracteres'); return; }
+  currentTaskFiles.push({ name, lang, code });
+  document.getElementById('xpTaskFileName').value = '';
+  document.getElementById('xpTaskCode').value = '';
+  renderTaskFileList();
+  showXPToast(`✅ ${name} adicionado à pasta`);
+}
+
+function removeTaskFile(i) {
+  currentTaskFiles.splice(i, 1);
+  renderTaskFileList();
+}
+
+function renderTaskFileList() {
+  const el = document.getElementById('taskFileList');
+  if (!currentTaskFiles.length) { el.innerHTML = ''; return; }
+  const lc = { html:['var(--orange)','🌐'], css:['var(--green)','🎨'], javascript:['var(--yellow)','⚡'], python:['var(--cyan)','🐍'], cpp:['var(--purple)','⚙️'], bash:['var(--red)','💻'] };
+  el.innerHTML = currentTaskFiles.map((f,i) => {
+    const [col, icon] = lc[f.lang] || ['var(--cyan)','📄'];
+    return `<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s2);border:1px solid var(--border);border-radius:8px">
+      <span>${icon}</span>
+      <span style="flex:1;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:${col}">${f.name}</span>
+      <span style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${f.lang.toUpperCase()} · ${f.code.length} chars</span>
+      <button onclick="removeTaskFile(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.8rem;padding:0 4px">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function renderTaskFolders() {
+  const el = document.getElementById('taskFolderList');
+  if (!taskFolders.length) { el.innerHTML = ''; return; }
+  const lc = { html:['var(--orange)','🌐'], css:['var(--green)','🎨'], javascript:['var(--yellow)','⚡'], python:['var(--cyan)','🐍'], cpp:['var(--purple)','⚙️'], bash:['var(--red)','💻'] };
+  el.innerHTML = taskFolders.map((folder, fi) => {
+    const filesHtml = folder.files.map((f, fli) => {
+      const [col, icon] = lc[f.lang] || ['var(--cyan)','📄'];
+      return `<div style="display:flex;align-items:center;gap:9px;padding:8px 14px 8px 28px;border-bottom:1px solid rgba(255,255,255,.03)">
+        <span style="font-size:.9rem">${icon}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:${col};font-weight:600">${f.name}</div>
+          <div style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${f.lang.toUpperCase()} · ${f.code.length} chars</div>
+        </div>
+        <button onclick="toggleTaskFile(${fi},${fli})" id="tf-toggle-${fi}-${fli}" style="padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-size:.65rem;cursor:pointer">▼ Ver</button>
+        <button onclick="downloadTaskFile(${fi},${fli})" style="padding:4px 8px;border-radius:6px;border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.05);color:var(--cyan);font-size:.7rem;cursor:pointer">⬇</button>
+      </div>
+      <pre id="tf-pre-${fi}-${fli}" style="display:none;padding:12px 14px 12px 28px;font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;margin:0;background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.03)">${f.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
+    }).join('');
+
+    const xpColor = folder.xp >= 30 ? 'var(--yellow)' : 'var(--muted)';
+    return `<div style="background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:10px">
+      <!-- Cabeçalho da pasta -->
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none" onclick="toggleFolder(${fi})">
+        <span id="folder-arrow-${fi}" style="color:var(--yellow);font-size:.8rem;transition:transform .2s">▶</span>
+        <span style="font-size:1rem">📁</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:.82rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${folder.name}</div>
+          <div style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${folder.files.length} arquivo(s) · ${folder.date}</div>
+        </div>
+        <span style="font-size:.72rem;font-weight:700;color:${xpColor};font-family:'JetBrains Mono',monospace;white-space:nowrap">+${folder.xp} XP</span>
+        <button onclick="event.stopPropagation();deleteFolder(${fi})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:.8rem;padding:2px 6px" title="Apagar pasta">🗑️</button>
+      </div>
+      <!-- Conteúdo da pasta (colapsável) -->
+      <div id="folder-body-${fi}" style="display:none;border-top:1px solid var(--border)">
+        ${folder.files.length ? filesHtml : '<div style="padding:12px 14px;color:var(--muted);font-size:.75rem">Sem arquivos nesta tarefa.</div>'}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleFolder(fi) {
+  const body = document.getElementById('folder-body-' + fi);
+  const arrow = document.getElementById('folder-arrow-' + fi);
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arrow.style.transform = open ? '' : 'rotate(90deg)';
+}
+
+function toggleTaskFile(fi, fli) {
+  const pre = document.getElementById(`tf-pre-${fi}-${fli}`);
+  const btn = document.getElementById(`tf-toggle-${fi}-${fli}`);
+  const open = pre.style.display === 'block';
+  pre.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? '▼ Ver' : '▲ Ocultar';
+}
+
+function downloadTaskFile(fi, fli) {
+  const f = taskFolders[fi].files[fli];
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([f.code], {type:'text/plain'}));
+  a.download = f.name;
+  a.click();
+}
+
+function deleteFolder(fi) {
+  const body = document.getElementById('taskFolderList');
+  body.innerHTML = `<div style="background:var(--s1);border:1px solid rgba(255,56,96,.3);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:.82rem;color:var(--text);margin-bottom:10px">Apagar a pasta <strong>"${taskFolders[fi].name}"</strong>?</div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button onclick="confirmDeleteFolder(${fi})" style="padding:7px 18px;background:var(--red);border:none;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Apagar</button>
+      <button onclick="renderTaskFolders()" style="padding:7px 18px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Cancelar</button>
+    </div>
+  </div>`;
+}
+
+function confirmDeleteFolder(fi) {
+  taskFolders.splice(fi, 1);
+  localStorage.setItem('cp_tasks', JSON.stringify(taskFolders));
+  renderTaskFolders();
+}
+
+function addManualTask() {
+  const input = document.getElementById('xpTaskInput');
+  const val = input.value.trim();
+  if (!val || val.length < 5) {
+    input.style.borderColor='var(--red)';
+    setTimeout(()=>input.style.borderColor='var(--border)',1500);
+    showXPToast('⚠️ Dê um nome para a pasta! Mínimo 5 caracteres');
+    return;
+  }
+
+  // Se tem código na área mas não adicionou como arquivo ainda, adiciona automaticamente
+  const pendingCode = document.getElementById('xpTaskCode').value.trim();
+  const pendingName = document.getElementById('xpTaskFileName').value.trim();
+  const pendingLang = document.getElementById('xpTaskLang').value;
+  if (pendingCode.length >= 20) {
+    const extMap = {html:'html',css:'css',javascript:'js',python:'py',cpp:'cpp',bash:'sh'};
+    const autoName = pendingName || (val.toLowerCase().replace(/[^a-z0-9]/g,'_').slice(0,15)+'.'+( extMap[pendingLang]||'txt'));
+    currentTaskFiles.push({ name: autoName, lang: pendingLang, code: pendingCode });
+  }
+
+  const temCodigo = currentTaskFiles.length > 0;
+  const xpGanho = temCodigo ? XP_REWARDS.tarefa : 5;
+
+  // Cria a pasta
+  const folder = {
+    id: Date.now(),
+    name: val,
+    date: new Date().toLocaleString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),
+    xp: xpGanho,
+    files: [...currentTaskFiles]
+  };
+  taskFolders.unshift(folder);
+  localStorage.setItem('cp_tasks', JSON.stringify(taskFolders));
+
+  // Também salva na aba Código
+  if (temCodigo) {
+    currentTaskFiles.forEach(f => {
+      codeFiles.unshift({ name: f.name, lang: f.lang, code: f.code, date: folder.date });
+    });
+    localStorage.setItem('cp_codes', JSON.stringify(codeFiles));
+  }
+
+  gainXP(xpGanho, temCodigo ? `Tarefa: ${val} (${currentTaskFiles.length} arquivo(s))` : `Tarefa: ${val} (sem código — +5 XP)`);
+
+  // Limpa tudo
+  input.value = '';
+  document.getElementById('xpTaskFileName').value = '';
+  document.getElementById('xpTaskCode').value = '';
+  currentTaskFiles = [];
+  renderTaskFileList();
+  renderTaskFolders();
+}
+
+// Drop de ZIP na área de código da tarefa — importa como vários arquivos
+async function handleTaskZipDrop(e) {
+  e.preventDefault();
+  document.getElementById('xpTaskCode').style.borderColor = 'var(--border)';
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.name.endsWith('.zip')) { showXPToast('⚠️ Solte um arquivo .zip!'); return; }
+  showXPToast('⏳ Extraindo ZIP...');
+  try {
+    await loadJSZip();
+    const zip = await JSZip.loadAsync(file);
+    const textExts = /\.(html|css|js|json|txt|md|py|cpp|c|h|sh|jsx|ts|scss)$/i;
+    const langMap = { html:'html', css:'css', js:'javascript', json:'javascript', py:'python', cpp:'cpp', c:'cpp', sh:'bash', jsx:'javascript', ts:'javascript', scss:'css' };
+    let count = 0;
+    for (const [path, entry] of Object.entries(zip.files)) {
+      if (entry.dir) continue;
+      const fName = path.split('/').pop();
+      if (!textExts.test(fName)) continue;
+      const content = await entry.async('string');
+      const ext = fName.split('.').pop().toLowerCase();
+      currentTaskFiles.push({ name: fName, lang: langMap[ext] || 'html', code: content });
+      count++;
+    }
+    renderTaskFileList();
+    document.getElementById('xpTaskCode').value = '';
+    showXPToast(`✅ ${count} arquivo(s) importados do ZIP!`);
+  } catch(err) {
+    showXPToast('❌ Erro ao ler o ZIP');
+  }
+}
+
+renderTaskFolders();
+
+function clearXpLog() {
+  const log = document.getElementById('xpLog');
+  // Mostra botão de confirmação no lugar do histórico
+  log.innerHTML = `<div style="text-align:center;padding:20px">
+    <div style="font-size:.8rem;color:var(--text);margin-bottom:12px">Tem certeza? O total de XP não é resetado.</div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button onclick="confirmClearLog()" style="padding:7px 18px;background:var(--red);border:none;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Sim, limpar</button>
+      <button onclick="updateXPUI()" style="padding:7px 18px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Cancelar</button>
+    </div>
+  </div>`;
+}
+function confirmClearLog() {
+  xpData.log = [];
+  saveXP();
+  const log = document.getElementById('xpLog');
+  log.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted);font-size:.75rem">Nenhuma ação ainda. Comece a estudar! 🚀</div>';
+}
+
+function resetXP() {
+  const log = document.getElementById('xpLog');
+  log.innerHTML = `<div style="text-align:center;padding:20px">
+    <div style="font-size:.85rem;color:var(--text);margin-bottom:6px;font-weight:700">⚠️ Resetar XP completamente?</div>
+    <div style="font-size:.75rem;color:var(--muted);margin-bottom:14px;line-height:1.5">Vai recalcular seu XP baseado nos módulos que você <strong>realmente marcou</strong>. Tarefas manuais, pomodoros e notas serão zerados.</div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button onclick="confirmResetXP()" style="padding:7px 18px;background:var(--red);border:none;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Sim, recalcular</button>
+      <button onclick="updateXPUI()" style="padding:7px 18px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">Cancelar</button>
+    </div>
+  </div>`;
+}
+
+function confirmResetXP() {
+  // Conta módulos realmente marcados
+  const marcados = Object.values(doneModules).filter(Boolean).length;
+  const xpCorreto = marcados * XP_REWARDS.modulo;
+
+  // Reseta tudo e recalcula
+  xpModulesRewarded = {};
+  Object.keys(doneModules).forEach(key => {
+    if (doneModules[key]) xpModulesRewarded[key] = true;
+  });
+  localStorage.setItem('cp_xp_mods', JSON.stringify(xpModulesRewarded));
+
+  xpData.total = xpCorreto;
+  xpData.log = marcados > 0 ? [{ amount: xpCorreto, reason: `Recalculado: ${marcados} módulo(s) concluído(s)`, date: new Date().toLocaleString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) }] : [];
+  saveXP();
+  updateXPUI();
+  showXPToast(`XP recalculado! ${marcados} módulos = ${xpCorreto} XP`);
+}
+
+updateXPUI();
+
+function updateStats(){const count=Object.values(doneModules).filter(Boolean).length;document.getElementById('statDone').textContent=count;document.getElementById('statPct').textContent=Math.round(count/28*100)+'%'}
+updateStats();
+
+const vocab=[{word:'Vulnerability',pt:'Vulnerabilidade',ex:'A SQL injection is a critical vulnerability.'},{word:'Exploit',pt:'Explorar / Exploração',ex:'The attacker used an exploit to gain access.'},{word:'Firewall',pt:'Firewall (igual!)',ex:'Enable the firewall to block suspicious traffic.'},{word:'Patch',pt:'Atualização / Correção',ex:'Apply the security patch immediately.'},{word:'Penetration Test',pt:'Teste de Invasão',ex:'We hired a team to run a penetration test.'},{word:'Payload',pt:'Carga maliciosa',ex:'The malware dropped a dangerous payload.'},{word:'Breach',pt:'Violação / Invasão',ex:'The data breach exposed 1 million records.'},{word:'Authentication',pt:'Autenticação',ex:'Two-factor authentication adds extra security.'},{word:'Encryption',pt:'Criptografia',ex:'Use end-to-end encryption for sensitive data.'},{word:'Malware',pt:'Software malicioso',ex:'The malware infected the entire network.'},{word:'Phishing',pt:'Phishing (igual!)',ex:'Do not click phishing email links.'},{word:'Reconnaissance',pt:'Reconhecimento',ex:'Phase 1 of pentesting is reconnaissance.'},{word:'Port Scanning',pt:'Varredura de Portas',ex:'Use nmap for port scanning.'},{word:'Privilege Escalation',pt:'Escalada de Privilégios',ex:'After login, attempt privilege escalation.'},{word:'Social Engineering',pt:'Engenharia Social',ex:'Social engineering tricks people, not systems.'},{word:'Zero-day',pt:'Vulnerabilidade Zero-day',ex:'A zero-day has no patch yet.'},{word:'Reverse Shell',pt:'Shell Reverso',ex:'The attacker opened a reverse shell.'},{word:'Hash',pt:'Hash (igual!)',ex:'Passwords are stored as hashed values.'},{word:'Enumeration',pt:'Enumeração',ex:'Enumeration reveals open ports and services.'},{word:'Lateral Movement',pt:'Movimento Lateral',ex:'After breach, attacker used lateral movement.'}];
+const vg=document.getElementById('vocabGrid');vocab.forEach(v=>{const c=document.createElement('div');c.className='vocab-card';c.innerHTML=`<div class="vocab-word">${v.word}</div><div class="vocab-hint">toque para ver ▸</div><div class="vocab-translation">🇧🇷 ${v.pt}</div><div class="vocab-example">"${v.ex}"</div>`;c.onclick=()=>c.classList.toggle('revealed');vg.appendChild(c)});
+
+let currentCat='Cyber';
+let notes=JSON.parse(localStorage.getItem('cp_notes')||'[]');
+const catStyle={'Cyber':['rgba(0,229,255,.12)','var(--cyan)'],'Solyd':['rgba(255,110,180,.12)','var(--pink)'],'HTML':['rgba(255,140,66,.12)','var(--orange)'],'CSS':['rgba(57,255,20,.12)','var(--green)'],'JS':['rgba(255,204,0,.12)','var(--yellow)'],'Comando':['rgba(255,204,0,.12)','var(--yellow)'],'Inglês':['rgba(57,255,20,.12)','var(--green)'],'Alemão':['rgba(191,95,255,.12)','var(--purple)'],'Dúvida':['rgba(255,56,96,.12)','var(--red)'],'Ideia':['rgba(200,180,255,.12)','#b4a0ff']};
+
+function setCat(btn, cat) {
+  document.querySelectorAll('.ncat').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = cat;
+  renderNotes();
+}
+
+function saveNote(){const text=document.getElementById('noteIn').value.trim();if(!text||text.length<10){const el=document.getElementById('noteIn');el.style.borderColor='var(--red)';setTimeout(()=>el.style.borderColor='var(--border)',1500);showXPToast('⚠️ Nota muito curta! Mínimo 10 caracteres');return;}notes.unshift({text,cat:currentCat,date:new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});localStorage.setItem('cp_notes',JSON.stringify(notes));document.getElementById('noteIn').value='';gainXP(XP_REWARDS.nota,'Nota salva em '+currentCat);renderNotes()}
+function delNote(i){
+  // i é o índice no array filtrado, precisa achar o índice real
+  const filtered = notes.map((n,idx)=>({...n,_idx:idx})).filter(n=>n.cat===currentCat);
+  const realIdx = filtered[i]._idx;
+  notes.splice(realIdx,1);
+  localStorage.setItem('cp_notes',JSON.stringify(notes));
+  renderNotes();
+}
+function renderNotes(){
+  const list=document.getElementById('notesList');
+  const filtered = notes.filter(n => n.cat === currentCat);
+  if(!filtered.length){list.innerHTML=`<div style="text-align:center;padding:26px;color:var(--muted);font-size:.78rem">Nenhuma nota em <strong>${currentCat}</strong> ainda. Anote algo! 🧠</div>`;return}
+  list.innerHTML=filtered.map((n,i)=>{const[bg,col]=catStyle[n.cat]||catStyle['Cyber'];return`<div class="note-card"><div class="nc-header"><span class="nc-badge" style="background:${bg};color:${col}">${n.cat}</span><span class="nc-date">${n.date}</span></div><div class="nc-text">${n.text}</div><button class="nc-del" onclick="delNote(${i})">✕</button></div>`}).join('')
+}
+document.getElementById('noteIn').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.ctrlKey)saveNote()});
+renderNotes();
+
+// ===== VISUALIZADOR DE CÓDIGO =====
+let codeFiles = JSON.parse(localStorage.getItem('cp_codes') || '[]');
+const langColors = { html: ['var(--orange)', '🌐'], css: ['var(--green)', '🎨'], javascript: ['var(--yellow)', '⚡'], python: ['var(--cyan)', '🐍'], cpp: ['var(--purple)', '⚙️'], bash: ['var(--red)', '💻'] };
+
+function handleTab(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const ta = e.target;
+    const start = ta.selectionStart;
+    ta.value = ta.value.substring(0, start) + '  ' + ta.value.substring(ta.selectionEnd);
+    ta.selectionStart = ta.selectionEnd = start + 2;
+  }
+}
+
+function saveCode() {
+  const name = document.getElementById('codeFileName').value.trim();
+  const lang = document.getElementById('codeLang').value;
+  const code = document.getElementById('codeInput').value.trim();
+  if (!name) { const el=document.getElementById('codeFileName'); el.style.borderColor='var(--red)'; setTimeout(()=>el.style.borderColor='var(--border)',1500); showXPToast('⚠️ Coloca o nome do arquivo!'); return; }
+  if (code.length < 20) { const el=document.getElementById('codeInput'); el.style.borderColor='var(--red)'; setTimeout(()=>el.style.borderColor='var(--border)',1500); showXPToast('⚠️ Código muito curto! Mínimo 20 caracteres'); return; }
+  codeFiles.unshift({ name, lang, code, date: new Date().toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) });
+  localStorage.setItem('cp_codes', JSON.stringify(codeFiles));
+  document.getElementById('codeFileName').value = '';
+  document.getElementById('codeInput').value = '';
+  gainXP(XP_REWARDS.codigo, 'Código salvo: ' + name);
+  renderCodeFiles();
+}
+
+function delCode(i) { codeFiles.splice(i, 1); localStorage.setItem('cp_codes', JSON.stringify(codeFiles)); renderCodeFiles(); }
+
+function downloadCode(i) {
+  const f = codeFiles[i];
+  const blob = new Blob([f.code], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = f.name;
+  a.click();
+}
+
+// ===== UPLOAD ZIP =====
+async function loadJSZip() {
+  if (window.JSZip) return;
+  await new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+}
+
+function handleZipDrop(e) {
+  e.preventDefault();
+  document.getElementById('zipDropArea').style.borderColor = 'var(--border)';
+  const file = e.dataTransfer.files[0];
+  if (file && file.name.endsWith('.zip')) handleZipFile(file);
+  else alert('Selecione um arquivo .zip!');
+}
+
+async function handleZipFile(file) {
+  if (!file) return;
+  const status = document.getElementById('zipStatus');
+  status.style.display = 'block';
+  status.style.color = 'var(--cyan)';
+  status.textContent = '⏳ Extraindo arquivos...';
+
+  try {
+    await loadJSZip();
+    const zip = await JSZip.loadAsync(file);
+    const textExts = /\.(html|css|js|json|txt|md|py|cpp|c|h|sh|xml|svg|php|ts|jsx|scss)$/i;
+    let count = 0;
+
+    for (const [path, zipEntry] of Object.entries(zip.files)) {
+      if (zipEntry.dir) continue;
+      const fileName = path.split('/').pop();
+      if (!textExts.test(fileName)) continue; // pula imagens/binários
+
+      const content = await zipEntry.async('string');
+      const ext = fileName.split('.').pop().toLowerCase();
+      const langMap = { html:'html', css:'css', js:'javascript', json:'javascript', py:'python', cpp:'cpp', c:'cpp', sh:'bash', jsx:'javascript', ts:'javascript', scss:'css' };
+      const lang = langMap[ext] || 'html';
+
+      // Evita duplicatas pelo nome
+      if (!codeFiles.find(f => f.name === fileName)) {
+        codeFiles.push({ name: fileName, lang, code: content, date: new Date().toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) });
+        count++;
+      }
+    }
+
+    localStorage.setItem('cp_codes', JSON.stringify(codeFiles));
+    status.style.color = 'var(--green)';
+    status.textContent = `✅ ${count} arquivo(s) importado(s) do ZIP!`;
+    gainXP(XP_REWARDS.zip, `ZIP importado: ${count} arquivo(s)`);
+    renderCodeFiles();
+  } catch(e) {
+    status.style.color = 'var(--red)';
+    status.textContent = '❌ Erro ao ler o ZIP. Tenta novamente.';
+  }
+}
+
+// ===== VISUALIZAÇÃO COMBINADA =====
+function verCombinado() {
+  if (!codeFiles.length) { alert('Nenhum arquivo salvo!'); return; }
+  const langColors2 = { html:'var(--orange)', css:'var(--green)', javascript:'var(--yellow)', python:'var(--cyan)', cpp:'var(--purple)', bash:'var(--red)' };
+  const icons2 = { html:'🌐', css:'🎨', javascript:'⚡', python:'🐍', cpp:'⚙️', bash:'💻' };
+  // Ordem: HTML primeiro, depois CSS, JS, resto
+  const ordem = ['html','css','javascript','python','cpp','bash'];
+  const sorted = [...codeFiles].sort((a,b) => {
+    const ia = ordem.indexOf(a.lang); const ib = ordem.indexOf(b.lang);
+    return (ia===-1?99:ia) - (ib===-1?99:ib);
+  });
+
+  document.getElementById('modalConteudo').innerHTML = sorted.map(f => `
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span>${icons2[f.lang]||'📄'}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:${langColors2[f.lang]||'var(--cyan)'}">${f.name}</span>
+        <span style="font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${f.lang.toUpperCase()}</span>
+      </div>
+      <pre style="background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:.75rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;margin:0">${f.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+    </div>
+  `).join('');
+
+  document.getElementById('modalCombinado').style.display = 'block';
+}
+
+async function downloadZip() {
+  if (!codeFiles.length) { alert('Nenhum arquivo salvo!'); return; }
+  const btn = document.getElementById('btnZip');
+  btn.textContent = '⏳ Gerando ZIP...';
+  btn.disabled = true;
+
+  // Carrega JSZip dinamicamente
+  await new Promise((res, rej) => {
+    if (window.JSZip) { res(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+
+  const zip = new JSZip();
+  codeFiles.forEach(f => {
+    // Coloca imagens numa pasta img/, o resto na raiz
+    const isImg = /\.(jpg|jpeg|png|gif|svg|webp|avif|ico)$/i.test(f.name);
+    const path = isImg ? 'img/' + f.name : f.name;
+    zip.file(path, f.code);
+  });
+
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meu-projeto.zip';
+  a.click();
+  btn.textContent = '📦 Baixar ZIP';
+  btn.disabled = false;
+}
+
+function toggleCode(i) {
+  const pre = document.getElementById('code-pre-' + i);
+  const btn = document.getElementById('code-toggle-' + i);
+  if (pre.style.display === 'none') { pre.style.display = 'block'; btn.textContent = '▲ Ocultar'; }
+  else { pre.style.display = 'none'; btn.textContent = '▼ Ver código'; }
+}
+
+function renderCodeFiles() {
+  const list = document.getElementById('codeFilesList');
+  if (!codeFiles.length) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--muted);font-size:.78rem">Nenhum arquivo salvo ainda. Cole seu código acima e salve! 💾</div>';
+    return;
+  }
+  list.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:7px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted)">${codeFiles.length} arquivo(s) salvo(s)</div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button onclick="verCombinado()" style="padding:8px 14px;background:rgba(191,95,255,.15);border:1px solid rgba(191,95,255,.3);border-radius:9px;color:var(--purple);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">👁️ Ver Completo</button>
+      <button id="btnZip" onclick="downloadZip()" style="padding:8px 16px;background:linear-gradient(135deg,var(--purple),var(--cyan));border:none;border-radius:9px;color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer">📦 Baixar ZIP</button>
+    </div>
+  </div>` + codeFiles.map((f, i) => {
+    const [col, icon] = langColors[f.lang] || ['var(--cyan)', '📄'];
+    return `
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:11px">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);flex-wrap:wrap">
+        <span style="font-size:1.1rem">${icon}</span>
+        <div style="flex:1;min-width:100px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;color:#fff">${f.name}</div>
+          <div style="font-size:.62rem;color:var(--muted);font-family:'JetBrains Mono',monospace">${f.lang.toUpperCase()} · ${f.date}</div>
+        </div>
+        <button id="code-toggle-${i}" onclick="toggleCode(${i})" style="padding:5px 12px;border-radius:7px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-size:.7rem;cursor:pointer">▼ Ver</button>
+        <button onclick="downloadCode(${i})" title="Baixar arquivo" style="padding:5px 10px;border-radius:7px;border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.05);color:var(--cyan);font-size:.75rem;cursor:pointer">⬇</button>
+        <button onclick="delCode(${i})" style="padding:5px 10px;border-radius:7px;border:1px solid rgba(255,56,96,.2);background:rgba(255,56,96,.05);color:var(--red);font-size:.75rem;cursor:pointer">✕</button>
+      </div>
+      <pre id="code-pre-${i}" style="display:none;padding:14px;font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:1.7;color:var(--text);white-space:pre-wrap;overflow-x:auto;margin:0;background:var(--s2)">${f.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+    </div>`;
+  }).join('');
+}
+renderCodeFiles();
+
+let tSec=25*60,tRunning=false,tInterval=null,tMode='foco';
+function setMode(mode,mins,btn){document.querySelectorAll('.t-mode').forEach(b=>b.classList.remove('active'));btn.classList.add('active');tMode=mode;tSec=mins*60;tRunning=false;clearInterval(tInterval);document.getElementById('tBtn').textContent='▶ Iniciar';document.getElementById('tLabel').textContent={foco:'MODO FOCO',pausa:'PAUSA CURTA ☕',longa:'PAUSA LONGA 🛌'}[mode];updateDisplay()}
+function updateDisplay(){const m=String(Math.floor(tSec/60)).padStart(2,'0');const s=String(tSec%60).padStart(2,'0');document.getElementById('tDisplay').textContent=m+':'+s}
+function toggleTimer(){if(tRunning){clearInterval(tInterval);tRunning=false;document.getElementById('tBtn').textContent='▶ Continuar'}else{tRunning=true;document.getElementById('tBtn').textContent='⏸ Pausar';tInterval=setInterval(()=>{tSec--;if(tSec<=0){clearInterval(tInterval);tRunning=false;document.getElementById('tBtn').textContent='▶ Iniciar';document.getElementById('tDisplay').textContent='00:00';if(tMode==='foco'){gainXP(XP_REWARDS.pomodoro,'Pomodoro de foco concluído! 🍅');alert('🎉 Pomodoro completo! Você mandou bem! Faça uma pausa.')}else{alert('⚡ Pausa acabou! Hora de voltar ao foco!')}}updateDisplay()},1000)}}
+function resetTimer(){clearInterval(tInterval);tRunning=false;tSec={foco:25,pausa:5,longa:15}[tMode]*60;document.getElementById('tBtn').textContent='▶ Iniciar';updateDisplay()}
+updateDisplay();
+
+// ===== IA MENTOR =====
+let iaHistory = [];
+
+function getContext() {
+  const done = Object.values(doneModules).filter(Boolean).length;
+  const pct = Math.round(done / 28 * 100);
+  const doneList = [];
+  Object.keys(phases).forEach(phase => {
+    phases[phase].forEach((mod, i) => {
+      if (doneModules[phase + '_' + i]) doneList.push(mod.title);
+    });
+  });
+  const notesAll = JSON.parse(localStorage.getItem('cp_notes') || '[]');
+  const duvidas = notesAll.filter(n => n.cat === 'Dúvida').map(n => n.text);
+  const notasRecentes = notesAll.slice(0, 5).map(n => `[${n.cat}] ${n.text}`);
+  return `Você é o CyberMentor, um mentor especialista em cybersecurity (pentest e OSINT) que acompanha um estudante brasileiro chamado usuário. Ele:
+- Estuda no Senai (3º semestre, JavaScript e IoT)
+- Tem o curso Solyd de pentest
+- Tem TDAH
+- Objetivo: trabalhar na Suíça como pentester/OSINT specialist em ~3 anos
+- Inglês atual: básico
+- Está aprendendo alemão também
+
+PROGRESSO ATUAL NO CURSO SOLYD:
+- ${done}/28 módulos concluídos (${pct}%)
+- Módulos concluídos: ${doneList.length > 0 ? doneList.join(', ') : 'nenhum ainda'}
+
+NOTAS RECENTES DO ESTUDANTE:
+${notasRecentes.length > 0 ? notasRecentes.join('\n') : 'Nenhuma nota ainda'}
+
+DÚVIDAS ANOTADAS:
+${duvidas.length > 0 ? duvidas.join('\n') : 'Nenhuma dúvida anotada'}
+
+Responda SEMPRE em português brasileiro. Seja direto, prático e motivador. Adapte sua linguagem para TDAH: respostas claras, com exemplos concretos, sem enrolação. Máximo 300 palavras por resposta a menos que precise explicar algo técnico complexo.`;
+}
+
+function addMsg(role, text) {
+  const chat = document.getElementById('iaChat');
+  const isBot = role === 'bot';
+  const div = document.createElement('div');
+  div.className = 'ia-msg ' + role;
+  div.innerHTML = `
+    <div class="ia-avatar" style="background:${isBot ? 'rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2)' : 'rgba(191,95,255,.1);border:1px solid rgba(191,95,255,.2)'}">
+      ${isBot ? '🤖' : '👤'}
+    </div>
+    <div class="ia-bubble">${text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--cyan)">$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(0,229,255,.1);padding:1px 5px;border-radius:4px;font-family:JetBrains Mono,monospace;font-size:.75em">$1</code>')}</div>
+  `;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addTyping() {
+  const chat = document.getElementById('iaChat');
+  const div = document.createElement('div');
+  div.className = 'ia-msg bot';
+  div.id = 'iaTyping';
+  div.innerHTML = `<div class="ia-avatar" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2)">🤖</div><div class="ia-bubble"><div class="ia-typing"><div class="ia-dot"></div><div class="ia-dot"></div><div class="ia-dot"></div></div></div>`;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('iaTyping');
+  if (t) t.remove();
+}
+
+async function sendIA() {
+  const input = document.getElementById('iaInput');
+  const text = input.value.trim();
+  if (!text || text.length < 5) return; // mínimo 5 caracteres
+
+  // Anti-spam: cooldown de 10s entre mensagens
+  const now = Date.now();
+  if (sendIA._lastSent && now - sendIA._lastSent < 10000) {
+    showXPToast('⏳ Aguarde ' + Math.ceil((10000-(now-sendIA._lastSent))/1000) + 's para enviar de novo');
+    return;
+  }
+  sendIA._lastSent = now;
+
+  const chat = document.getElementById('iaChat');
+  if (chat.children.length === 1 && chat.children[0].style.textAlign === 'center') chat.innerHTML = '';
+
+  addMsg('user', text);
+  input.value = '';
+  document.getElementById('iaSendBtn').disabled = true;
+  document.getElementById('iaSendBtn').textContent = '...';
+  iaHistory.push({ role: 'user', content: text });
+  addTyping();
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: getContext(),
+        messages: iaHistory
+      })
+    });
+    const data = await response.json();
+
+    // Só ganha XP se a resposta veio com sucesso e tem conteúdo real
+    if (data.content && data.content[0] && data.content[0].text && data.content[0].text.length > 50) {
+      const reply = data.content[0].text;
+      removeTyping();
+      addMsg('bot', reply);
+      iaHistory.push({ role: 'assistant', content: reply });
+      if (iaHistory.length > 20) iaHistory = iaHistory.slice(-20);
+
+      // XP baseado no tamanho da pergunta (qualidade)
+      const xpEarned = text.length > 80 ? 10 : text.length > 30 ? 5 : 2;
+      gainXP(xpEarned, `Pergunta para o CyberMentor (${xpEarned} XP por qualidade)`);
+    } else {
+      removeTyping();
+      addMsg('bot', data.content?.[0]?.text || '⚠️ Resposta inválida. Tenta de novo!');
+      // Sem XP para respostas inválidas
+    }
+  } catch (e) {
+    removeTyping();
+    addMsg('bot', '⚠️ Erro de conexão. Verifique sua internet e tente novamente.');
+    // Sem XP em erro
+  }
+
+  const sendBtn = document.getElementById('iaSendBtn');
+  sendBtn.disabled = false;
+  sendBtn.textContent = '▶ Enviar';
+  sendBtn.blur();
+  document.getElementById('iaInput').focus();
+}
+
+function quickAsk(text) {
+  document.getElementById('iaInput').value = text;
+  sendIA();
+}
+</script>
+</body>
+</html>
